@@ -99,7 +99,11 @@ tritsToBytes(const Trits& trits) {
       data.push_back(static_cast<uint32_t>(sum & 0xffffffff));
     }
     switch (sign*trits[i - 1]) {
-    case 1:
+    case 0: {
+      // nothing to do here
+      break;
+    }
+    case 1: {
       // increment by 1
       for (size_t j = 0; j < data.size(); ++j) {
         data[j] = data[j] + 1;
@@ -111,7 +115,8 @@ tritsToBytes(const Trits& trits) {
         data.push_back(1);
       }
       break;
-    case -1:
+    }
+    case -1: {
       // decrement by 1
       uint8_t carry = 0;
       for (size_t j = 0; j < data.size(); ++j) {
@@ -122,6 +127,12 @@ tritsToBytes(const Trits& trits) {
         data.pop_back();
       }
       break;
+    }
+    default: {
+      // if we reach here, trits is invalid
+      assert(false);
+      break;
+    }
     }
   }
 
