@@ -78,6 +78,7 @@ before_build:
   - cmake .. -DBUILD_TESTS=1 -G %generator%
 
 build:
+  parallel: true
   project: c:\projects\iota-lib-cpp\build\iota.sln
 
 test_script:

@@ -295,5 +295,5 @@ script:
   - mkdir -p build
   - cd build
   - cmake -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DBUILD_TESTS=1 ..
-  - make
+  - make -j4
   - GTEST_COLOR=1 ctest -VV
