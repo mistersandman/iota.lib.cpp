@@ -249,7 +249,8 @@ bytesToTrits(const std::vector<int8_t>& bytes) {
     }
   }
 
-  std::vector<int8_t> trits;
+  std::vector<int8_t> trits(TritHashLength, 0);
+  size_t l = 0;
 
   // strip leading zeros
   while (j && !div[j - 1]) {
@@ -285,10 +286,9 @@ bytesToTrits(const std::vector<int8_t>& bytes) {
       rem -= 3;
     }
 
-    trits.push_back(sign * static_cast<int8_t>(rem));
+    trits[l++] = sign * static_cast<int8_t>(rem);
   }
 
-  trits.resize(TritHashLength, 0);
   return trits;
 }
 
